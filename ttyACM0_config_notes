@@ -1,0 +1,22 @@
+    
+    * Correct ttyACM0 port configuration *
+
+Port config:
+
+    sudo stty -F /dev/ttyACM0 115200 raw -echo -ixon -ixoff min 0 time 1
+
+Then manually send with printf:
+
+    printf "led2 off\n" | sudo tee /dev/ttyACM0 > /dev/null
+
+Or even simpler:
+
+    printf "fan on\n" > /dev/ttyACM0
+
+Or interactively with screen:
+
+    sudo screen /dev/ttyACM0 115200
+
+To go out from screen:
+
+    CTRL^A then next 'k' and 'y'
